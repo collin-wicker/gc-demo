@@ -7,7 +7,7 @@ aaa authorization exec default local
 !
 no aaa root
 !
-{%  for ip in device["config_context"]["ntp"] %}
+{%  for ip in config_context["ntp"] %}
 ntp server {{ ip["name"] }} {% if ip["prefer"] %} prefer{% endif %}
 {%  endfor %}
 !
