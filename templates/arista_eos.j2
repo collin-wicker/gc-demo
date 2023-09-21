@@ -7,9 +7,9 @@ aaa authorization exec default local
 !
 no aaa root
 !
-ntp server 10.1.1.1 prefer
-ntp server 10.2.2.2 
-ntp server 10.3.3.3
+{%  for ip in device["config_context"]["ntp"] %}
+ntp server {{ ip["name"] }} {% if ip["prefer"] %} prefer{% endif %}
+{%  endfor %}
 !
 interface Ethernet1
 !
