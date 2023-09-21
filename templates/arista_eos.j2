@@ -8,7 +8,7 @@ aaa authorization exec default local
 no aaa root
 !
 {%  for ip in config_context["ntp"] %}
-ntp server {{ ip["name"] }} {% if ip["prefer"] %} prefer{% endif %}
+ntp server {{ ip["name"] }} {% if ip["prefer"] == true%} prefer{% endif %}
 {%  endfor %}
 !
 interface Ethernet1
