@@ -14,7 +14,7 @@ ntp server {{ ip["name"] }} {% if ip.get("prefer")%} prefer{% endif +%}
 {% for interface in interfaces %}
 interface {{ interface["name"] }}
 {% if interface.get("ip_addresses") %}
-    ip address{% for ip in interface["ip_addresses"] %} {{ ip["address"] }}{% endfor %}
+  ip address {{  interface["ip_addresses"]["address"] }}
 {% endif %}
 {% endfor %}
 !
