@@ -11,24 +11,15 @@ no aaa root
 ntp server {{ ip["name"] }} {% if ip.get("prefer")%} prefer{% endif +%}
 {%  endfor %}
 !
-interface Ethernet1
+{% for interface in interfaces %}
+interface {{ interface["name"] }}
+{% if interface.get("ip_addresses"["address"]) %}
+ip address {{ interface["ip_addresses"]["address"] }}
+{% endif %}
+{% endfor %}
 !
-interface Ethernet2
-!
-interface Ethernet3
-!
-interface Ethernet4
-!
-interface Ethernet5
-!
-interface Ethernet6
-!
-interface Ethernet7
-!
-interface Ethernet8
-!
-interface Management1
-   ip address 10.0.128.2/24
+interface Loopback0
+   ip address {{ primary_ip4["address"] }}
 !
 ip route 0.0.0.0/0 10.0.128.255
 !
